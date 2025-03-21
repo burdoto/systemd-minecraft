@@ -1,0 +1,19 @@
+[Unit]
+Description=%i Minecraft Server
+
+[Service]
+Type=simple
+User=minecraft
+Group=minecraft
+
+WorkingDirectory=/opt/mc/%i/
+ExecStart=/usr/bin/bash /opt/mc/launch.sh %i
+ExecStop=/usr/bin/bash /opt/mc/shutdown.sh %i
+KillSignal=SIGINT
+TimeoutStopSec=180
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
